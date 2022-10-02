@@ -32,7 +32,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Deploy to S3
-        shell: bash
-        run: | 
-          ls -la
-          pwd
+        run: aws s3 sync . s3://${{ inputs.AWS_S3_BUCKET }} --delete
