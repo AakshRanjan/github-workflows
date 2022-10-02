@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifactory
-        uses: jfrog/artifactory-action@v3
+        uses: actions/download-artifact@v2
         with:
           name: ${{ inputs.Artifactory_Name }}
       - name: Set AWS Credentials
