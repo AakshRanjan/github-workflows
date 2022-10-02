@@ -2,13 +2,13 @@ name: Build React App
 
 on:
   workflow_call:
-  inputs:
-    Artifactory_Name:
-      required: true
-      type: string
-    Artifactory_Path:
-      required: true
-      type: string
+    inputs:
+      Artifactory_Name:
+        required: true
+        type: string
+      Artifactory_Path:
+        required: true
+        type: string
 
 jobs:
   Deploy:
