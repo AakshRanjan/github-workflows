@@ -6,6 +6,12 @@ on:
       AWS_S3_BUCKET:
         required: true
         type: string
+      Artifactory_Name:
+        required: true
+        type: string
+      Artifactory_Path:
+        required: true
+        type: string
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
@@ -18,8 +24,11 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Download Artifactory
+        uses: jfrog/artifactory-action@v2
+        with:
+          name: ${{ inputs.Artifactory_Name }}
+          path: ${{ inputs.Artifactory_Path }}
       - name: Set AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

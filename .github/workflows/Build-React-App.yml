@@ -2,6 +2,13 @@ name: Build React App
 
 on:
   workflow_call:
+  inputs:
+      Artifactory_Name:
+        required: true
+        type: string
+      Artifactory_Path:
+        required: true
+        type: string
 
 jobs:
   Deploy:
@@ -9,7 +16,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+
       - name: Install Dependencies
         run: npm install
+
       - name: Build React App
         run: npm run build
+
+      - name: Upload to Artifactory
+        uses: jfrog/artifactory-action@v2
+        with:
+          name: ${{ inputs.Artifactory_Name }}
+          path: ${{ inputs.Artifactory_Path }}
