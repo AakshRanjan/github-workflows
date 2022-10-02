@@ -9,9 +9,6 @@ on:
       Artifactory_Name:
         required: true
         type: string
-      Artifactory_Path:
-        required: true
-        type: string
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
@@ -25,10 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifactory
-        uses: jfrog/artifactory-action@v2
+        uses: jfrog/artifactory-action@v3
         with:
           name: ${{ inputs.Artifactory_Name }}
-          path: ${{ inputs.Artifactory_Path }}
       - name: Set AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
