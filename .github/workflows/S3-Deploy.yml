@@ -33,4 +33,6 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Deploy to S3
         shell: bash
-        run: ls -la
+        run: | 
+          ls -la
+          pwd
